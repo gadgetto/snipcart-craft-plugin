@@ -17,11 +17,11 @@ There are three optional arguments:
 
 - `includejQuery` is `true` by default and will also render a `<script>` tag for loading jQuery. Disable to include it yourself, just be sure it's [compatible with Snipcart](https://docs.snipcart.com/getting-started/installation).
 - `onload` can be a value to set for the Snipcart tag's `onload` property.
-- `includeStyles` is `false` by default, and if `true` will render a `<link>` tag for loading Snipcart's base stylesheet.
+- `includeStyles` is `true` by default, and if `false` will not render the `<link>` tag that loads Snipcart's base stylesheet.
 
 ```twig
 {# include Snipcart JS + optional arguments #}
-{{ craft.snipcart.cartSnippet(includejQuery=true, onload='', includeStyles=false) }}
+{{ craft.snipcart.cartSnippet(includejQuery=true, onload='', includeStyles=true) }}
 ```
 
 ## Cart Button
