@@ -8,8 +8,8 @@ meta:
 
 _Add to Cart_ buttons are critical to Snipcart because they define products behind the scenes. If you've used the _Product Details_ field, there's a `getBuyNowButton()` method that will surely save you some time. By default it will...
 
--   Include a product's SKU, name, price, URL, quantity (of 1), and taxable+shippable status.
--   Include weight and dimensions (in grams and centimeters) if the item is shippable.
+- Include a product's SKU, name, price, URL, quantity (of 1), and taxable+shippable status.
+- Include weight and dimensions (in grams and centimeters) if the item is shippable.
 
 It will also simplify the process of adding custom variations (color, size, etc.) whether or not they affect the product price.
 
@@ -52,13 +52,11 @@ Optionally supply custom options that don't affect pricing.
 ```twig
 {# Buy Now button with custom options #}
 {{ entry.productDetails.getBuyNowButton({
-    customOptions: [
-        {
-            name: 'Size',
-            required: true,
-            options: [ 'Small', 'Medium', 'Large' ]
-        }
-    ]
+    customOptions: [{
+        name: 'Size',
+        required: true,
+        options: [ 'Small', 'Medium', 'Large' ]
+    }]
 }) | raw }}
 ```
 
@@ -72,30 +70,28 @@ Custom options that each adjust the base product price. Each amount can be posit
 
 ```twig
 {{ entry.productDetails.getBuyNowButton({
-    customOptions: [
-       {
-           name: 'Bling Type',
-           required: true,
-           options: [
-                 {
-                     name: 'Bedazzled',
-                     price: 0
-                 },
-                 {
-                     name: 'Bronzed',
-                     price: 25
-                 },
-                 {
-                     name: 'Diamond Studded',
-                     price: 500
-                 },
-                 {
-                     name: 'Used, Bad Shape',
-                     price: -50
-                 }
-            ]
-       }
-   ]
+    customOptions: [{
+        name: 'Bling Type',
+        required: true,
+        options: [
+            {
+                name: 'Bedazzled',
+                price: 0
+            },
+            {
+                name: 'Bronzed',
+                price: 25
+            },
+            {
+                name: 'Diamond Studded',
+                price: 500
+            },
+            {
+                name: 'Used, Bad Shape',
+                price: -50
+            }
+        ]
+    }]
 }) | raw }}
 ```
 
@@ -113,19 +109,20 @@ A key/value JSON array can also be used to define prices in different currencies
 
 ```twig
 {{ entry.productDetails.getBuyNowButton({
-    price: {"usd": 20, "cad": 25}
+    price: { 'usd': 20, 'cad': 26.84 }
 }) | raw }}
 ```
 
-## Additional Options
+## All Options
 
-Because you'll want to customize that button, and why shouldn't you?
-
-| Property          | Requires             | Description                                                                                                                                                     |
-| ----------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `classes`         | array `[]`           | Array of class names to be added to the anchor element.                                                                                                         |
-| `text`            | string `''`          | Inner text, which defaults to `Buy Now`.                                                                                                                        |
-| `target`          | string `''`          | Anchor [target](https://www.w3schools.com/TAGs/att_a_target.asp).                                                                                               |
-| `title`           | string `''`          | Anchor [title](https://www.w3schools.com/tags/att_title.asp).                                                                                                   |
-| `rel`             | string `''`          | Anchor [relationship](https://www.w3schools.com/TAGs/att_a_rel.asp).                                                                                            |
-| `additionalProps` | key/value array `''` | Attribute+value pairs for the anchor. Useful for supplying additional [product definition](https://docs.snipcart.com/configuration/product-definition) details. |
+| Property          | Requires                   | Description                                                                                                                                                                                              |
+| ----------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `classes`         | array                      | Array of additional class names to be added to the anchor element. Default is `['btn']`.<br><br>`.snipcart-add-item` will automatically be added and cannot be removed since it's functionally required. |
+| `text`            | string                     | Inner text, which defaults to `Buy Now`.                                                                                                                                                                 |
+| `target`          | string                     | Anchor [target](https://www.w3schools.com/TAGs/att_a_target.asp).                                                                                                                                        |
+| `title`           | string                     | Anchor [title](https://www.w3schools.com/tags/att_title.asp).                                                                                                                                            |
+| `rel`             | string                     | Anchor [relationship](https://www.w3schools.com/TAGs/att_a_rel.asp).                                                                                                                                     |
+| `quantity`        | integer                    | Initial quantity to be added to the cart. Defaults to `1`.                                                                                                                                               |
+| `image`           | string                     | URL for a product thumbnail to be used in the cart. The default cart template's image is 50px square.                                                                                                    |
+| `price`           | decimal or key/value array | Price override, or key/value array to define multiple currencies (`{ 'usd': 20, 'eur': 17.79 }`). Defaults to the price defined in the Product Details field.                                            |
+| `additionalProps` | key/value array            | Attribute+value pairs for the anchor. Useful for supplying additional [product definition](https://docs.snipcart.com/configuration/product-definition) details.                                          |
