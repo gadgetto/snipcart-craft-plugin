@@ -1,5 +1,15 @@
 # Snipcart Changelog
 
+## 1.0.4 - 2019-03-09
+### Added
+- Added Twig template methods: `craft.snipcart.getCustomer()`, `craft.snipcart.getOrder()` and `craft.snipcart.getSubscription()`.
+- Added ability to override Twig `getBuyNowButton()` price with support for multiple currencies.
+- `getBuyNowButton()` can now include custom options with negative price adjustments.
+### Fixed
+- Currency setting is now saved properly.
+- Improved consistency of currency values displayed in the control panel and email templates.
+- Fixed UnknownPropertyException when viewing Discounts because of new `normalizedRate` property.
+
 ## 1.0.3 - 2019-03-05
 ### Fixed
 - Fixed a bug where passing a `null` value for Product Details `customOptions` would throw a warning in PHP 7.2. 

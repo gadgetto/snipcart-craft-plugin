@@ -11,6 +11,9 @@ namespace workingconcept\snipcart\variables;
 use workingconcept\snipcart\fields\ProductDetails;
 use workingconcept\snipcart\helpers\FieldHelper;
 use workingconcept\snipcart\helpers\VersionHelper;
+use workingconcept\snipcart\models\Customer;
+use workingconcept\snipcart\models\Order;
+use workingconcept\snipcart\models\Subscription;
 use workingconcept\snipcart\Snipcart;
 use Craft;
 use craft\helpers\Template as TemplateHelper;
@@ -31,6 +34,16 @@ class SnipcartVariable
     }
 
     /**
+     * Returns the default currency.
+     *
+     * @return string
+     */
+    public function defaultCurrency(): string
+    {
+        return Snipcart::$plugin->getSettings()->getDefaultCurrency();
+    }
+
+    /**
      * Returns the default currency symbol.
      *
      * @return string
@@ -38,6 +51,42 @@ class SnipcartVariable
     public function defaultCurrencySymbol(): string
     {
         return Snipcart::$plugin->getSettings()->getDefaultCurrencySymbol();
+    }
+
+    /**
+     * Returns a Snipcart customer by ID.
+     *
+     * @param string $customerId
+     * @return Customer|null
+     * @throws \Exception if API key is missing.
+     */
+    public function getCustomer($customerId)
+    {
+        return Snipcart::$plugin->customers->getCustomer($customerId);
+    }
+
+    /**
+     * Returns a Snipcart order by ID.
+     *
+     * @param string $orderId
+     * @return Order|null
+     * @throws \Exception if API key is missing.
+     */
+    public function getOrder($orderId)
+    {
+        return Snipcart::$plugin->orders->getOrder($orderId);
+    }
+
+    /**
+     * Returns a Snipcart subscription by ID.
+     *
+     * @param string $subscriptionId
+     * @return Subscription|null
+     * @throws \Exception if API key is missing.
+     */
+    public function getSubscription($subscriptionId)
+    {
+        return Snipcart::$plugin->subscriptions->getSubscription($subscriptionId);
     }
 
     /**
