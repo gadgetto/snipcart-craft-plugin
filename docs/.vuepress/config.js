@@ -12,6 +12,13 @@ module.exports = {
         docsDir: 'docs',
         editLinks: true,
         searchMaxSuggestions: 10,
+        algolia: {
+            apiKey: '4503bb250c3b20bb702c01376de65252',
+            indexName: 'workingconcept_snipcart',
+            algoliaOptions: {
+                hitsPerPage: 10,
+            }
+        },
         sidebar: [
             {
                 title: 'Getting Started',
